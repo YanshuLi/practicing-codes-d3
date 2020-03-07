@@ -1,0 +1,8 @@
+let chartContainer = d3.select('div#chart')
+let width = 700
+let height = 500
+
+let svg = chartContainer
+    .append('svg')
+    .append('width', width)
+    .attr('height', height)
