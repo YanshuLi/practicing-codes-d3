@@ -1,0 +1,46 @@
+let sculptData = (raw) => {
+	/* write data processing code in here */
+	console.log("sculpt this data:", raw)
+
+	data = raw.map(d => {
+		d.healthExpPerCapita = +d.healthExpPerCapita
+		return d
+	})
+
+    australia = data.filter(d => d.name === 'Australia')
+
+    sortedByYear = australia.sort((a,b) => a.year - b.year)
+
+    console.log(sortByYear)
+
+    let minVal = d3.min(data, d => d.lifeExpectancy)
+    /*let minCountry = d3.least(data, d => d.lifeExpectancy)*/
+    let maxVal = d3.max(data, d => d.lifeExpectancy)
+    /*let maxCountry = d3.greatest(data, d => d.lifeExpectancy)*/
+    let extentVal = d3.extent(data, d => d.lifeExpectancy)
+
+    /*console.log(minVal, maxVal, entenVal)*/
+
+    let dataYears = d3.next()
+        .key(d => d.year)
+        .sortValues((b,a) => +a.healthExpPerCapita - +b.healthExpPerCapita)
+        .object(data)
+
+    let dataCountries = d3.nest()
+        .key(d => d.name)
+        .entries(data)
+        
+
+        console.log(dataYears, dataCountries)
+
+        return(dataYears)
+}
+
+/* d3.csv goes here */
+d3.csv('../data/oecd.csv')
+    .then(data => {
+    	console.log('Data is ready:', data);
+    })
+    
+    
+    /*above is code used to sculpting data in d3*/
